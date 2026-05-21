@@ -1,0 +1,6 @@
+mcp[cli]>=1.0.0
+openai>=1.80.0
+langsmith
+pydantic-settings>=2.0
+pytest>=8.0
+pytest-asyncio>=0.21
