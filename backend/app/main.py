@@ -39,5 +39,5 @@ app.add_middleware(
 )
 
 app.include_router(health_router)
-app.include_router(social_media_router)
-app.include_router(drafts_router)
+app.include_router(social_media_router, prefix="/api")
+app.include_router(drafts_router, prefix="/api")
