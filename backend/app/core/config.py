@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     mcp_content_generation_server_url: str = "http://content-generation-server:8001/sse"
     mcp_publication_server_url: str = "http://publication-server:8002/sse"
 
+    cors_origins: list[str] = ["http://localhost:5173"]
+
     model_config = {"env_file": ".env"}
 
 
