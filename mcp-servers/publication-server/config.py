@@ -1,7 +1,3 @@
-import json
-from typing import Any
-
-from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings
 
 _DEFAULT_ALLOWED_HOSTS = [
@@ -14,24 +10,16 @@ class Settings(BaseSettings):
     server_host: str = "0.0.0.0"
     server_port: int = 8002
 
-    # En-têtes Host autorisés pour l'endpoint SSE.
-    # Surcharge via ALLOWED_HOSTS : JSON array ou liste séparée par virgules.
-    # Ex. Render : ALLOWED_HOSTS=mon-service.onrender.com,mon-service
-    allowed_hosts: list[str] = Field(default=_DEFAULT_ALLOWED_HOSTS)
+    # Hostnames supplémentaires à autoriser pour l'endpoint SSE (production).
+    # Format comma-separated. Ex. Render : EXTRA_ALLOWED_HOSTS=mon-service.onrender.com,mon-service
+    extra_allowed_hosts: str = ""
 
-    @field_validator("allowed_hosts", mode="before")
-    @classmethod
-    def parse_allowed_hosts(cls, v: Any) -> Any:
-        if isinstance(v, list):
-            return v
-        if isinstance(v, str):
-            v = v.strip()
-            if not v:
-                return _DEFAULT_ALLOWED_HOSTS
-            if v.startswith("["):
-                return json.loads(v)
-            return [h.strip() for h in v.split(",") if h.strip()]
-        return v
+    @property
+    def allowed_hosts(self) -> list[str]:
+        hosts = list(_DEFAULT_ALLOWED_HOSTS)
+        if self.extra_allowed_hosts:
+            hosts.extend(h.strip() for h in self.extra_allowed_hosts.split(",") if h.strip())
+        return hosts
 
     model_config = {"env_file": ".env"}
 
