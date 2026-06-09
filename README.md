@@ -1,6 +1,14 @@
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-async-009688?logo=fastapi&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-agent-1C3C3C?logo=langchain&logoColor=white)
+![LangSmith](https://img.shields.io/badge/LangSmith-observability-1C3C3C?logo=langchain&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-checkpoints-DC382D?logo=redis&logoColor=white)
+![MCP](https://img.shields.io/badge/MCP-server%20%2B%20client-6B46C1)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
+
 # real-estate-marketing-agent
 
-Agent IA de marketing immobilier — génération et publication automatisée de contenus.
+Agent IA qui génère et publie automatiquement des posts marketing immobiliers sur Facebook et Instagram — avec workflow human-in-the-loop : l'agent rédige les drafts, attend une approbation humaine, puis publie. Construit avec LangGraph + MCP + Redis pour une exécution durable et observable.
 
 ---
 
